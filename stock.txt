@@ -1,0 +1,9 @@
+Cutlass 10 5
+Katana 20 10
+Pistol 30 15
+AK-47 40 20
+Magic_Staff 50 25
+Fireball 60 30
+Banana 70 35
+Juan 80 40
+Super_Idol 200 100

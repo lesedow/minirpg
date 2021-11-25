@@ -6,4 +6,4 @@ Magic_Staff 50 25
 Fireball 60 30
 Banana 70 35
 Juan 80 40
-Super_Idol 200 100
+Super_Idol 500 100

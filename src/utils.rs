@@ -1,7 +1,30 @@
 use std::io;
 use std::fs;
 use std::error::Error;
+use rand::Rng;
+use std::convert::TryInto;
 use crate::weapon::Weapon;
+use crate::monster::Monster;
+
+pub fn random_number(value: u32) -> usize {
+    rand::thread_rng().gen_range(0..value).try_into().unwrap()
+}
+
+pub fn random_monster() -> Monster {
+    const MONSTERS: &[(&str, u32, u32, u32)] = &[
+        ("Skeleton", 2, 6, 2),
+        ("Goblin", 5, 10, 4),
+        ("Crabman", 8, 14, 6),
+        ("Witch", 11, 18, 8),
+        ("Iron Skeleton", 14, 22, 10),
+        ("Goblin", 17, 26, 12),
+        ("Slayer", 20, 30, 14),
+        ("Foolface", 23, 34, 20)
+    ];
+
+    let (name, health, damage, money_value) = MONSTERS[random_number(MONSTERS.len().try_into().unwrap())];
+    Monster::new(name, health, damage, money_value)
+}
 
 pub fn get_as_usize(value: &str) -> Option<usize>{
     if let Ok(num) = value.trim().parse::<usize>() {

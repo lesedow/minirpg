@@ -2,7 +2,14 @@ use minirpg::player::Player;
 use minirpg::weapon::Weapon;
 use minirpg::utils::*;
 
-pub fn advance() {}
+pub fn advance() {
+    // This function should get a random event or a random monster which you can fight with
+    // You should have an "attack" and a "defend" option
+    // The defend option should reduce the damage of the monster
+    // The monster should give you some money when killed
+    // println!("{:?}", random_monster());
+    let monster =  random_monster();
+}
 
 pub fn shop(player: &mut Player) {
     let shop_stock = get_stock().unwrap();

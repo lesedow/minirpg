@@ -1,7 +1,7 @@
 use crate::weapon::Weapon;
 
 pub struct Player {
-    health: u32,
+    health: i32,
     pub weapon: Weapon,
     money: u32,
 }
@@ -12,12 +12,20 @@ impl Player {
         Player { health: 100, weapon, money: 0 }
     }
 
-    pub fn get_health(&self) -> u32 {
+    pub fn get_health(&self) -> i32 {
         self.health
+    }
+
+    pub fn reset_health(&mut self) {
+        self.health = 100;
     }
 
     pub fn add_money(&mut self, value: u32) {
         self.money += value;
+    }
+
+    pub fn get_money(&self) -> u32 {
+        self.money
     }
 
     fn subtract_money(&mut self, value: u32) {
@@ -40,9 +48,9 @@ impl Player {
         println!("You dont have enough money!");
     }
 
-    pub fn hurt_player(&mut self, damage: u32) {
+    pub fn take_damage(&mut self, damage: i32) {
         self.health -= damage;
-        println!("Player got hurt! Health left: {}", self.health);
+        println!("You have {} health left", self.health);
     }
 } 
 

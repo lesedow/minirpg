@@ -6,18 +6,22 @@ use std::convert::TryInto;
 use crate::weapon::Weapon;
 use crate::monster::Monster;
 
-pub fn random_number(value: u32) -> usize {
+pub fn random_number(value: i32) -> usize {
     rand::thread_rng().gen_range(0..value).try_into().unwrap()
 }
 
+pub fn random_i32(value: i32) -> i32 {
+    rand::thread_rng().gen_range(0..value)
+}
+
 pub fn random_monster() -> Monster {
-    const MONSTERS: &[(&str, u32, u32, u32)] = &[
+    const MONSTERS: &[(&str, i32, i32, u32)] = &[
         ("Skeleton", 2, 6, 2),
         ("Goblin", 5, 10, 4),
         ("Crabman", 8, 14, 6),
         ("Witch", 11, 18, 8),
         ("Iron Skeleton", 14, 22, 10),
-        ("Goblin", 17, 26, 12),
+        ("Goblin King", 17, 26, 12),
         ("Slayer", 20, 30, 14),
         ("Foolface", 23, 34, 20)
     ];
@@ -46,7 +50,7 @@ pub fn get_stock() -> Result<Vec<Weapon>, Box<dyn Error>>{
     for line in contents.lines() {
         let separate_words: Vec<&str> = line.split(' ').collect();
         let price: u32 = separate_words[1].parse().unwrap();
-        let damage: u32 = separate_words[2].parse().unwrap();
+        let damage: i32 = separate_words[2].parse().unwrap();
 
         final_list.push(Weapon::new(separate_words[0], price, damage));
     }
